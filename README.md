@@ -1,6 +1,6 @@
 # Masarak Mobile App
 
-This is the mobile application for the Masarak public transportation guidance system, built with React and optimized for mobile devices.
+This is the mobile application for the Masarak public transportation guidance system, built with React and optimized for mobile devices. It is also configured as a Progressive Web App (PWA).
 
 ## Project Structure
 
@@ -8,7 +8,8 @@ This is the mobile application for the Masarak public transportation guidance sy
 - `src/components/`: Contains reusable UI components, including `MapComponent.jsx`.
 - `src/services/`: Contains API service calls (`api.js`), location services (`location.js`), and map services (`maps.js`).
 - `src/hooks/`: Contains custom React hooks (`useAppState.js`).
-- `public/`: Static assets.
+- `src/utils/pwa.js`: PWA utility functions for installation, updates, and notifications.
+- `public/`: Static assets, including `manifest.json`, `sw.js` (Service Worker), and PWA icons.
 
 ## Local Development
 
@@ -34,7 +35,22 @@ This is the mobile application for the Masarak public transportation guidance sy
     ```bash
     npm run dev
     ```
-    The application will be available at `http://localhost:5174`.
+    The application will be available at `http://localhost:5174` (or another available port).
+
+## Progressive Web App (PWA)
+
+This application is configured as a Progressive Web App (PWA), offering an enhanced user experience with features like:
+
+*   **Installability:** Users can install the app directly to their device's home screen, bypassing app stores.
+*   **Offline Access:** The app can work offline or on unreliable networks thanks to the Service Worker.
+*   **Push Notifications:** Supports push notifications to engage users.
+*   **Fast Loading:** Leverages caching strategies for quicker load times.
+
+### How to Install the PWA
+
+Once the application is deployed and accessed via a web browser (e.g., Chrome, Edge, Safari on mobile), you will typically see an 
+
+install prompt or an option to "Add to Home Screen" in the browser's menu. Click this option to install the PWA.
 
 ## Deployment to Vercel
 
