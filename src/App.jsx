@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { installPWA, isPWAInstalled, handleAppShortcuts, checkForUpdates } from './utils/pwa'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -66,13 +67,17 @@ function App() {
     clearError
   } = useAppState()
 
-  // Load initial data
+  // Load initial data and PWA setup
   useEffect(() => {
     if (isAuthenticated) {
       loadFavoriteRoutes()
       loadTripHistory()
     }
     loadInitialMapData()
+    
+    // PWA initialization
+    handleAppShortcuts()
+    checkForUpdates()
   }, [isAuthenticated, loadFavoriteRoutes, loadTripHistory])
 
   // Load nearby stations when location changes
@@ -271,6 +276,17 @@ function App() {
                 <Navigation2 className="h-5 w-5" />
               )}
             </Button>
+            {!isPWAInstalled() && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-white hover:bg-white/20"
+                onClick={installPWA}
+                title="تثبيت التطبيق"
+              >
+                <Zap className="h-5 w-5" />
+              </Button>
+            )}
             <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
               <Settings className="h-5 w-5" />
             </Button>
